@@ -50,6 +50,8 @@ def es_primo(n, divisor=2):
 #MCD_C recibe una lista L, un numero n
 def MCD_C(L,n,mult=1):
     ##print(mult)
+    if paraTodo(lambda x: x==L[0], L[1:]):
+        return L[0]
     if existeUn(es_primo, L) or existeUn(lambda x: n >= x,L):        
         return mult
     elif paraTodo(lambda x: x%n == 0, L):        
@@ -98,11 +100,13 @@ def MCD_Stein(a, b):
             return MCD_Stein((b - a) // 2, a)
 
 
-# medir tiempos de ejecucion
-tiempo_promedio = timeit.timeit(lambda: MCD_euclides(997,48), number=10000)
+q = 9997
+w = 999
+itera = 10
+tiempo_promedio = timeit.timeit(lambda: MCD_euclides(q,w), number=itera)
 print("Tiempo promedio ecuclides:", tiempo_promedio, "segundos")
-tiempo_promedio = timeit.timeit(lambda: MCD_V2([997,48]), number=10000)
+tiempo_promedio = timeit.timeit(lambda: MCD_V2([q,w]), number=itera)
 print("Tiempo promedio de mi algoritmo:", tiempo_promedio, "segundos")
-tiempo_promedio = timeit.timeit(lambda: MCD_Stein(997,48), number=10000)
+tiempo_promedio = timeit.timeit(lambda: MCD_Stein(q,w), number=itera)
 print("Tiempo promedio de algoritmo Stein:", tiempo_promedio, "segundos")
 
